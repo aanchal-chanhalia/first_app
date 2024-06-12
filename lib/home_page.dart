@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,28 +12,32 @@ class __HomePStateState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.yellow,
-
-      title: Text("Hello Anchal"),),
+      backgroundColor: Colors.red,
+      
+      
+      title: Center( 
+        child: Text("strawberry pavlova")
+      )
+      ,),
   
     body:
       const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.center,
+       // crossAxisAlignment: CrossAxisAlignment.start,
+         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           Text("Hello Anchal"),
-      Text("Hello Rahul"),
-      Text("Hello Rahul"),
-      Text("Hello Rahul"),
-      Text("Hello Rahul"),
+           Text("strawberry pavlova"),
+           Text("pavlova is a meringue-basde desert"),
+      Text("named after the russian"),
+      Text("ballerina Anua pavlova"),
+      Text("fealtures acrips crust and soft,light inside"),
+      Text("topped with fruit and whipped cream."),
       Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
   
         children: [
-           Text("Hello Anchal"),
-      Text("Hello Rahul"),
-      Text("Hello Rahul"),
-      Text("Hello Rahul"),
-      Text("Hello Rahul"),
+          
+           Text("****  170 Reviews"),
+ 
         ]
        ),
         ],
