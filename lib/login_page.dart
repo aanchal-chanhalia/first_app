@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPage extends State<LoginPage> {
   var name =TextEditingController();
+var posword=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +25,24 @@ class _LoginPage extends State<LoginPage> {
       controller: name,
       decoration: InputDecoration(hintText: "Enter Your Email"),),
       
-      TextButton(onPressed:(){
-        nameString=name.text.toString();
-        print("press button");
-      },
-      child:Text("press button")),
-    ElevatedButton(onPressed: (){},
-     child: const Text("elevated button")),
-OutlinedButton(onPressed: (){},
- child:Text("outline button")),
-      Text(nameString,
-      style:const TextStyle(color:Colors.blue ) ,),
+      // TextButton(onPressed:(){
+      //  var nameString=name.text.toString();
+      //   print("press button");
+      // },
+    //  child:Text("press button")),
+      TextField(
+        controller: posword,
+        decoration:const InputDecoration(hintText: "posword"), ),
+        ElevatedButton(onPressed: (){
+         var names = name.text.toString();
+          print(names);
+          var posword1 = posword.text.toString();
+          print(posword1);
+
+        },child: const Text("elevated button")),
+
+     
+
 
       
       ],),
