@@ -1,4 +1,4 @@
-import 'package:first_app/home_page.dart';
+import 'package:first_app/Home_Page.dart';
 import 'package:first_app/login_page.dart';
 import 'package:first_app/login_page2.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }

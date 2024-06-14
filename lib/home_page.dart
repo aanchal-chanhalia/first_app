@@ -8,41 +8,39 @@ class HomePage extends StatefulWidget {
 }
 
 class __HomePStateState extends State<HomePage> {
+  var name = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.red,
+      //backgroundColor: Colors.red,
       
       
-      title: Center( 
-        child: Text("strawberry pavlova")
-      )
+      title: const Text(" discover the best product!")
       ,),
   
     body:
       const Column(
-       // crossAxisAlignment: CrossAxisAlignment.start,
-         mainAxisAlignment: MainAxisAlignment.center,
+       crossAxisAlignment: CrossAxisAlignment.start,
+         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           Text("strawberry pavlova"),
-           Text("pavlova is a meringue-basde desert"),
-      Text("named after the russian"),
-      Text("ballerina Anua pavlova"),
-      Text("fealtures acrips crust and soft,light inside"),
-      Text("topped with fruit and whipped cream."),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-  
-        children: [
+           //Text("DICOVER THE BEST"),
+           //Text("PRODUCT !"),
+           TextField(
+           // controller: name,
+            decoration: InputDecoration(hintText:"serch your products",border: OutlineInputBorder()),
           
-           Text("****  170 Reviews"),
+
+           )
+      
+      
+          
  
         ]
        ),
-        ],
-       ) 
-      );
+        
+       );
+      
     
   }
 }
