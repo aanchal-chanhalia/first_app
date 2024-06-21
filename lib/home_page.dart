@@ -13,27 +13,43 @@ class __HomePStateState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      //backgroundColor: Colors.red,
+      backgroundColor: Colors.red,
       
       
       title: const Text(" discover the best product!")
       ,),
   
     body:
-      const Column(
+    
+       const Row(
+      
+        
+        
        crossAxisAlignment: CrossAxisAlignment.start,
-         //mainAxisAlignment: MainAxisAlignment.center,
+         //mainAxisAlignment: MainAxisAlignment.start,
         children: [
-           //Text("DICOVER THE BEST"),
-           //Text("PRODUCT !"),
+        
+    
+           Text("DICOVER THE BEST"),
+           Text("PRODUCT !"),
            TextField(
+      
            // controller: name,
-            decoration: InputDecoration(hintText:"serch your products",border: OutlineInputBorder()),
-          
+            decoration:InputDecoration
+            
+              (hintText:"serch your products",
+              prefixIcon:  Icon(Icons.search),
+              border: OutlineInputBorder()),
+             
 
-           )
-      
-      
+           ),
+           
+    Expanded(child: 
+    CircleAvatar(radius: 20,backgroundImage: AssetImage("assets/image/download/jpg"),)
+        
+    ),
+           CircleAvatar(radius: 20,backgroundImage: AssetImage("assets/image/download/jpg"),),
+        
           
  
         ]
