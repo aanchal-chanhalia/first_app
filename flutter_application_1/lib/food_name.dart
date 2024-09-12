@@ -39,76 +39,111 @@ class _FoodNameState extends State<FoodName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("FOOD name"),
-        backgroundColor: Colors.pinkAccent,
-      ),
+    
       body: ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context,index){
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              color: Colors.red,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                      Text(list[index].FoodName.toString()),
-                      Text(list[index].FoodPrice.toString()),
-                      ElevatedButton(onPressed:(){
-                        setState(() {});
-                        showDialog(
-                          context: context,
-                           builder:(BuildContext context){
-                            return AlertDialog(
-                              title:Center(
-                                child: Text("dailog"),
-                              ) ,
-                              content: Column(
-                                mainAxisSize:MainAxisSize.min ,
-                                children: [
-                                  TextField(
-                                    controller: FoodName,
-                                    focusNode: foodfocus,
-                                    decoration: InputDecoration(
-                                      hintText: "enter foodname",
-                                      border: OutlineInputBorder()
-                                    ),
-                                  ),
-                                  TextField(
-                                    controller:FoodPrice,
-                                    focusNode: Pricefocus,
-                                    decoration: InputDecoration(
-                                      hintText: "enter foodprice",
-                                      border: OutlineInputBorder()
-                                    ),
-                                  ),
-                                  
-                                ],
-                              ),
-                            );
-                           });
-                        FoodName.clear();
-                        Navigator.of(context).pop();
-                      },
-                       child: Icon(Icons.edit)),
-                       
-                       GestureDetector(
-                        onTap: (){
-                          setState(() {});
-                          databaseProvider.deleteTodo(list[index].id??0);
-                          setState(() {});
-                          getdata();
-                        },
-                        child: Icon(Icons.delete),
-                       )
-                       ]
-              ),
-            ),);
-        }
-        
-        ),
-        floatingActionButton: FloatingActionButton(
+          itemCount: list.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  color: Colors.red,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.abc),
+                          Expanded(
+                              child: Text(
+                            list[index].id.toString(),
+                            style: TextStyle(color: Colors.white),
+                          )),
+                          Expanded(
+                              child: Text(list[index].FoodName.toString(),
+                                  style: TextStyle(color: Colors.white))),
+                          Expanded(
+                              child: Text(list[index].FoodPrice.toString(),
+                                  style: TextStyle(color: Colors.white))),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Center(
+                                        child: Text(list[index].id.toString()),
+                                      ),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextField(
+                                            controller: FoodName,
+                                            focusNode: foodfocus,
+                                            decoration: const InputDecoration(
+                                                hintText: "Enter Name",
+                                                border: OutlineInputBorder()),
+                                          ),
+                                          TextField(
+                                            controller: FoodPrice,
+                                            focusNode: Pricefocus,
+                                            decoration: const InputDecoration(
+                                                hintText: "Enter Roll Number",
+                                                border: OutlineInputBorder()),
+                                          ),
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {});
+                                                if (FoodName.text
+                                                    .toString()
+                                                    .isEmpty) {
+                                                  Fluttertoast.showToast(
+                                                      msg: "Ente Food Name");
+                                                } else if (FoodPrice.text
+                                                    .toString()
+                                                    .isEmpty) {
+                                                  Fluttertoast.showToast(
+                                                      msg:
+                                                          "Enter FoodPrice");
+                                                } else {
+                                                  var foodmodel = FoodModel(
+                                                      id: list[index].id,
+                                                      FoodName: FoodName.text
+                                                          .toString(),
+                                                      FoodPrice: double.parse(
+                                                          FoodPrice.text));
+                                                  databaseProvider
+                                                      .updatefood(foodmodel);
+                                                  setState(() {});
+                                                  getdata();
+                                                }
+
+                                                FoodName.clear();
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text("Add Name"))
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            },
+                            child: const Icon(Icons.edit),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                            
+                              databaseProvider.deleteTodo(list[index].id ?? 0);
+                              setState(() {});
+                              getdata();
+                            },
+                            child: const Icon(Icons.delete),
+                          )
+                        ],
+                      )
+                    ],
+                  )),
+            );
+          }),
+          floatingActionButton: FloatingActionButton(
           onPressed: (){
             showDialog(context: context,
              builder: (BuildContext context){

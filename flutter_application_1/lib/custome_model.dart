@@ -1,23 +1,23 @@
 class CustomeModel{
   int? id;
-  String? custmername;
-  String? contactnumber;
+  String? customerName;
+  String? contacNumber;
   CustomeModel({
     this.id,
-    this.custmername,
-    this.contactnumber,
+    this.customerName,
+    this.contacNumber,
   });
   Map<String,dynamic>toMap(){
     return{
       "id":id,
-      "custmername":custmername,
-      "contacnumber":contactnumber,
+      "customerName":customerName,
+      "contacNumber":contacNumber,
     };
   }factory CustomeModel.fromJson(Map<String,dynamic>json){
     return CustomeModel(
       id:json["id"],
-      custmername: json["costmername"],
-      contactnumber: json["contacnumber"],
+      customerName: json["customerName"],
+      contacNumber: json["contacNumber"],
     );
   }
 }

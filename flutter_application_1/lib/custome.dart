@@ -13,9 +13,9 @@ class Custome extends StatefulWidget {
 class _CustomeState extends State<Custome> {
   DatabaseProvider databaseProvider = DatabaseProvider();
   var list = <CustomeModel>[];
-  var custmername = TextEditingController();
+  var customerName = TextEditingController();
   var focus = FocusNode();
-  var contactnumber = TextEditingController();
+  var contacNumber = TextEditingController();
   var contactfocus = FocusNode();
   var getcustomename = "customename";
   var  customelist = [];
@@ -35,101 +35,101 @@ class _CustomeState extends State<Custome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("CUSTOME"),
-        backgroundColor: Colors.green,
-      ),
+      
       body:ListView.builder(
         itemCount: list.length,
         itemBuilder:(context,index){
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              color: Colors.red,
-              child: Column(
+              color: Colors.white,
+              child:Column( 
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.abc),
-                      Expanded(child: Text(list[index].id.toString(),
-                      style: TextStyle(color: Colors.white),)),
-                      Expanded(child: Text(list[index].custmername.toString(),
-                      style: TextStyle(color: Colors.white),
-                      )),
-                      Expanded(child: Text(list[index].contactnumber.toString(),
-                      )),
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(context: context,
-                           builder: (BuildContext context){
-                            return AlertDialog(
-                              title: Center(
-                                child: Text(list[index].id.toString()),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextField(
-                                    controller: custmername,
-                                    focusNode: focus,
-                                    decoration: InputDecoration(
-                                      hintText: "ennter custmorename",
-                                      border: OutlineInputBorder()
-                                    ),
-                                  ),
-                                  TextField(
-                                    controller: contactnumber,
-                                    focusNode: contactfocus,
-                                    decoration: InputDecoration(
-                                      hintText: "enter contactnumber",
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                  onPressed: (){
-                                    setState(() {});
-                                    if(custmername.text.toString().isEmpty){
-                                      Fluttertoast.showToast(msg: "enter custmername");
-                                    }else{
-                                      if(contactnumber.text.toString().isEmpty){
-                                        Fluttertoast.showToast(msg: "enter contactnumber");
-                                      }else{
-                                        var customemodel = CustomeModel(
-                                          id: list[index].id,
-                                          custmername: custmername.text.toString(),
-                                          contactnumber:contactnumber.text.toString());
-                                          databaseProvider.addCustomer(customemodel);
-                                          setState(() { });
-                                          getdata();
-                                      }
-                                      custmername.clear();
-                                      contactnumber.clear();
-                                      Navigator.of(context).pop();
-                                    }
-                                  },
-                                   child: Text("add customername"))
-                                ],
-                              ),
-                            );
-                           });
-                        },
-                        child: Icon(Icons.edit),
+              children: [
+                Row(
+                  children: [
+                Expanded(child:Text(list[index].id.toString(),
+                style:TextStyle(color: Colors.black) ,)),
+                Expanded(child: Text(list[index].customerName.toString(),
+                style: TextStyle(color: Colors.black),)),
+                Expanded(child: Text(list[index].contacNumber.toString(),
+                style: TextStyle(color: Colors.black),)),
+                GestureDetector(
+                  onTap: (){
+                    showDialog(context: context, 
+                    builder: (BuildContext context){
+                     return AlertDialog(
+                      title: Center(
+                        child: Text("dailog"),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {});
-                          databaseProvider.deleteCustomer(list[index].id??0);
-                          setState(() { });
-                          getdata();
-                        },
-                        child: Icon(Icons.delete),
-                      )
-                    ],
-                  )
-                ],
-              ),
+                      content:Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextField(
+                            controller: customerName,
+                            focusNode:focus ,
+                            decoration: InputDecoration(
+                              hintText: "enter customerName",
+                              border: OutlineInputBorder()
+                            ),
+                          ),
+                          TextField(
+                            controller:customerName ,
+                            focusNode: contactfocus,
+                            decoration: InputDecoration(
+                              hintText: "enter contactNumber",
+                              border: OutlineInputBorder()
+                            ),
+                          ),
+                          ElevatedButton(onPressed: (){
+                            setState(() {
+                            });
+                            if(customerName.text.toString().isEmpty){
+                              Fluttertoast.showToast(msg: "enter customerName");
+                            }else if(contacNumber.text.toString().isEmpty){
+                              Fluttertoast.showToast(msg: "enter contactNumber");
+                            }else{
+                              var customemodel = CustomeModel(
+                                id: list[index].id,
+                                customerName: customerName.text.toString(),
+                                contacNumber: contacNumber.text.toString()
+                              );
+                              databaseProvider.updateCustomer(customemodel);
+                              setState(() {
+                              });
+                              getdata();
+                            }
+                            customerName.clear();
+                            Navigator.of(context).pop();
+                            contacNumber.clear();
+                            Navigator.of(context).pop();
+                          },
+                           child: Text("add"))
+                        ],
+                      ) ,
+                      );
+                    });
+                    
+                  },
+                  child: Icon(Icons.edit),
+                  
+                ),
+
+
+                     GestureDetector(
+                  onTap: (){
+                    databaseProvider.deleteCustomer(list[index].id??0);
+                    setState(() { });
+                    getdata();
+                  },
+                  child: Icon(Icons.delete),
+                )
+                  ]
+                )
+              ],
+              )
             ),
-            );
+          );
         }),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
@@ -143,7 +143,7 @@ class _CustomeState extends State<Custome> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextField(
-                      controller:custmername ,
+                      controller:customerName ,
                       focusNode:focus ,
                       decoration:const InputDecoration(
                         hintText: "enter custmer name",
@@ -151,7 +151,7 @@ class _CustomeState extends State<Custome> {
                       ) ,
                     ),
                     TextField(
-                      controller:contactnumber,
+                      controller:contacNumber,
                       focusNode:contactfocus, 
                       decoration:const InputDecoration(
                         hintText: "enter custmer contactnumber",
@@ -160,15 +160,15 @@ class _CustomeState extends State<Custome> {
                      ),
                      TextButton(onPressed: (){
                       setState(() {
-                      var customemodel = CustomeModel(
-                        custmername: custmername.text.toString(),
-                        contactnumber: contactnumber.text.toString(),
+                      var customeModel = CustomeModel(
+                        customerName: customerName.text.toString(),
+                        contacNumber: contacNumber.text.toString(),
 
                       ) ;
-                      databaseProvider.updateCustomer(customemodel);
+                      databaseProvider.insrtcustomer(customeModel);
                       Navigator.of(context).pop();
-                      print("customemodel:${CustomeModel}");
-                       custmername.clear();
+                      print("CustomeModel:${CustomeModel}");
+                       customerName.clear();
                       });
                      }, 
                      child: Text("add"))

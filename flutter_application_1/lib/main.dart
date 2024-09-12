@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app.dart';
 import 'package:flutter_application_1/food_app.dart';
+import 'package:flutter_application_1/view_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FoodApp(),
+      home: FoodApp(),
     );
   }
 }

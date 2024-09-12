@@ -26,7 +26,7 @@ class DatabaseProvider {
                 await db!.execute(
                     'CREATE TABLE FOODNAME (id INTEGER PRIMARY KEY, FoodName, FoodPrice INTEGER)');
                       await db!.execute(
-                    'CREATE TABLE CUSTOME (id INTEGER PRIMARY KEY, custmername, custmercontacnumber INTEGER)');
+                    'CREATE TABLE CUSTOMER (id INTEGER PRIMARY KEY, customerName, contacNumber TEXT)');
               }));
     } else {
       String path = join(await getDatabasesPath(), databaseName);
@@ -35,7 +35,7 @@ class DatabaseProvider {
         await db!.execute(
             'CREATE TABLE FOODNAME (id INTEGER PRIMARY KEY, FoodName TEXT, FoodPrice REAL)');
             await db!.execute(
-            'CREATE TABLE CUSTOME (id INTEGER PRIMARY KEY, custmername TEXT, custmerconumberntact INTEGER)');
+            'CREATE TABLE CUSTOMER(id INTEGER PRIMARY KEY, customerName TEXT, contacNumber TEXT)');
       });
     }
     return Future.value(database);
@@ -43,31 +43,31 @@ class DatabaseProvider {
 
   Future<void> insertFood(FoodModel foodmodel) async {
     var db = await createDatabase();
-    db.insert("foodname", foodmodel.toMap());
+    db.insert("FOODNAME", foodmodel.toMap());
   }
-  Future<void> addCustomer(CustomeModel customemodel) async {
+  Future<void> insrtcustomer(CustomeModel customemodel) async {
     var db = await createDatabase();
-    db.insert("custome", customemodel.toMap());
+    db.insert("CUSTOMER", customemodel.toMap());
   }
 
-  Future<void> food(FoodModel foodmodel) async {
+  Future<void> updatefood(FoodModel foodmodel) async {
     var db = await createDatabase();
-    db.update("foodname", foodmodel.toMap(),
+    db.update("FOODNAME", foodmodel.toMap(),
         where: "id=?", whereArgs: [foodmodel.id]);
   }
   Future<void>updateCustomer(CustomeModel customemodel) async {
     var db = await createDatabase();
-    db.update("custome", customemodel.toMap(),
+    db.update("CUSTOMER", customemodel.toMap(),
         where: "id=?", whereArgs: [customemodel.id]);
   }
 
   Future<void> deleteTodo(int id) async {
     var db = await createDatabase();
-    db.delete("Test", where: "id=?", whereArgs: [id]);
+    db.delete("FOODNAME", where: "id=?", whereArgs: [id]);
   }
    Future<void> deleteCustomer(int id) async {
     var db = await createDatabase();
-    db.delete("custome", where: "id=?", whereArgs: [id]);
+    db.delete("CUSTOMER", where: "id=?", whereArgs: [id]);
   }
 
   Future<List<FoodModel>> getlist() async {
@@ -80,7 +80,7 @@ class DatabaseProvider {
   }
   Future<List<CustomeModel>> getList() async {
     var db = await createDatabase();
-    final List<Map<String, dynamic>> maps = await db.query("custome");
+    final List<Map<String, dynamic>> maps = await db.query("CUSTOMER");
 
     return List.generate(maps.length, (i) {
       return CustomeModel.fromJson(maps[i]);
